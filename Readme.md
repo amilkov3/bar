@@ -7,7 +7,7 @@ building a simplified web server.  In _this_ project you will start with a worki
 server and augment it:
 
 1. **Part 1** You will convert this implementation of the getfile server to act as a [proxy server](https://en.wikipedia.org/wiki/Proxy_server).
-  This server will accept incoming GETFILE requests into http requests for another server,
+  This server will accept incoming GETFILE requests and translated them into http requests for another server,
   such as one located on the internet.
 2. **Part 2** You will implement a simple [cache server](https://whatis.techtarget.com/definition/cache-server) 
    that communicates with the proxy via **shared memory**.
@@ -66,7 +66,7 @@ your submission and assign a grade.
 submit your **readme-student.md** or **readme-student.pdf** file.
 
 We strongly encourage you to think about testing your own code.  Test driven
-development is a standard technique for softare, including systems software.
+development is a standard technique for software, including systems software.
 Bonnie is a _grader_, not your test suite.
 
 
