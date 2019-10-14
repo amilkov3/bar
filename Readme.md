@@ -130,8 +130,6 @@ for debugging purposes, but those changes are not sent to Bonnie.
 
 - **handle_with_file.c** - (not submitted) illustrates how to use the gfserver library with an example.
 
-- **locals.txt** - (not submitted) this is a mapping of requested files to local copies; this is similar to Project 1.
-
 - **Makefile** - (not submitted) file used to compile the code.  Run `make` to compile your code.
 
 - **proxy-student.h** - (submitted) you may use this header file to store any content you desire.  If you do not wish to do so,
