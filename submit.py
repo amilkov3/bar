@@ -6,7 +6,7 @@ import json
 import datetime
 import hashlib
 import glob
-from nelson.gtomscs import submit
+from nelson.gtomscs import submit, default_app_data_dir
 
 # see https://github.com/udacity/nelson for nelson information (OMSCS specific)
 
