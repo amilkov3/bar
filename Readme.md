@@ -135,7 +135,7 @@ for debugging purposes, but those changes are not sent to Bonnie.
 - **proxy-student.h** - (submitted) you may use this header file to store any content you desire.  If you do not wish to do so,
 you can ignore this file.
 
-- **steque.[ch]** - (not submitted) you may find this steque (stack and queue) data useful in implementing the the cache.
+- **steque.[ch]** - (not submitted) you may find this steque (stack and queue) data useful in implementing the proxy server.
 
 - **webproxy.c** - (modify and submit) this is the main file for the webproxy program.  Only small modifications are necessary.
 
