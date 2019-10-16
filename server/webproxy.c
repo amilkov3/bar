@@ -92,8 +92,6 @@ int main(int argc, char **argv) {
     exit(__LINE__);
   }
 
-  // Initialize shared memory set-up here
-
   // Initialize server structure here
   gfserver_init(&gfs, nworkerthreads);
 
