@@ -32,6 +32,9 @@ static int _itemcmp(const void *a, const void *b){
 	return strcmp(((item_t*) a)->key,((item_t*) b)->key);
 }
 
+unsigned long int cache_delay = 0;
+
+
 int simplecache_init(char *filename){
 	FILE *filelist;
 	int capacity = 16;
@@ -77,6 +80,11 @@ int simplecache_get(char *key){
 	int lo = 0;
 	int hi = nitems - 1;
 	int mid, cmp;
+
+	if (cache_delay > 0) {
+		usleep(cache_delay);
+	}
+
 	while (lo <= hi) {
 		// Key is in items[lo..hi] or not present.
 		mid = lo + (hi - lo) / 2;

@@ -29,12 +29,15 @@ static void _sig_handler(int signo){
 	}
 }
 
+extern unsigned long int cache_delay;
+
 #define USAGE                                                                 \
 "usage:\n"                                                                    \
 "  simplecached [options]\n"                                                  \
 "options:\n"                                                                  \
 "  -c [cachedir]       Path to static files (Default: ./)\n"                  \
 "  -t [thread_count]   Thread count for work queue (Default is 7, Range is 1-31415)\n"      \
+"  -d [delay]          Delay in simplecache_get (Default is 0, Range is 0-5000 (ms)\n "	\
 "  -h                  Show this help message\n"
 
 /* OPTIONS DESCRIPTOR ====================================================== */
@@ -43,6 +46,7 @@ static struct option gLongOptions[] = {
   {"nthreads",           required_argument,      NULL,           't'},
   {"help",               no_argument,            NULL,           'h'},
   {"hidden",			 no_argument,			 NULL,			 'i'}, /* server side */
+  {"delay", 			 required_argument,		 NULL, 			 'd'}, // delay.
   {NULL,                 0,                      NULL,             0}
 };
 
@@ -58,7 +62,7 @@ int main(int argc, char **argv) {
 	/* disable buffering to stdout */
 	setbuf(stdout, NULL);
 
-	while ((option_char = getopt_long(argc, argv, "ic:hlxt:", gLongOptions, NULL)) != -1) {
+	while ((option_char = getopt_long(argc, argv, "id:c:hlxt:", gLongOptions, NULL)) != -1) {
 		switch (option_char) {
 			default:
 				Usage();
@@ -72,12 +76,19 @@ int main(int argc, char **argv) {
 				break;    
 			case 't': // thread-count
 				nthreads = atoi(optarg);
-				break;   
+				break;
+			case 'd':
+				cache_delay = (unsigned long int) atoi(optarg);
 			case 'i': // server side usage
 			case 'l': // experimental
 			case 'x': // experimental
 				break;
 		}
+	}
+
+	if (cache_delay > 5000) {
+		fprintf(stderr, "Cache delay must be less than 5000 (ms)\n");
+		exit(__LINE__);
 	}
 
 	if ((nthreads>31415) || (nthreads < 1)) {
