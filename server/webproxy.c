@@ -22,6 +22,8 @@ static struct option gLongOptions[] = {
 extern ssize_t handle_with_file(gfcontext_t *ctx, const char *path, void* arg);
 extern ssize_t handle_with_cache(gfcontext_t *ctx, const char *path, void* arg);
 
+extern ssize_t handle_with_curl(gfcontext_t *ctx, const char *path, void* arg);
+
 static gfserver_t gfs;
 
 static void _sig_handler(int signo){
@@ -97,12 +99,12 @@ int main(int argc, char **argv) {
 
   // Set server options here
   gfserver_setopt(&gfs, GFS_MAXNPENDING, 801);
-  gfserver_setopt(&gfs, GFS_WORKER_FUNC, handle_with_file);
+  gfserver_setopt(&gfs, GFS_WORKER_FUNC, handle_with_curl);
   gfserver_setopt(&gfs, GFS_PORT, port);
 
   // Set up arguments for worker here
   for(i = 0; i < nworkerthreads; i++) {
-    gfserver_setopt(&gfs, GFS_WORKER_ARG, i, "arg");
+    gfserver_setopt(&gfs, GFS_WORKER_ARG, i, server);
   }
   
   // Invoke the framework - this is an infinite loop and shouldn't return
